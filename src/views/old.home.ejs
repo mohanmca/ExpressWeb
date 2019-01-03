@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <title>Index - Home page</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">Major title</div>
+        Index.html content!
+    </div>
+    <h1>
+        Welcome to EJS template - <%=title%>
+    </h1>
+    <ul>
+        <% for(var i=0; i<list.length; i++) { %>
+            <li>
+                <%= list[i] %>
+            </li>
+        <% } %>
+    </ul>
+
+</body>
+<script src="/js/jquery.slim.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/popper.min.js"></script>
+
+</html>
