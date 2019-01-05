@@ -6,9 +6,31 @@ const app = express();
 const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path');
-const bookRouter = require('./src/routes/bookRoutes');
+const mysql = require('mysql');
 
 const port = process.env.PORT || 3000;
+
+const nav = [{ link: '/books', title: 'Books' }, { link: '/authors', title: 'Authors' }];
+const bookRouter = require('./src/routes/bookRoutes')(nav);
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  port: 3306,
+  password: 'euler',
+  user: 'euler',
+  database: 'thales',
+  schema: 'thales' // created by default
+});
+
+connection.connect();
+
+connection.query('select * from books', function (error, results, fields) {
+  // console.log('Fields are is: ', fields);
+  // console.log('The solution is: ', results);
+  if (error) throw error;
+});
+
+connection.end();
 
 app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, '/public/')));
@@ -27,26 +49,13 @@ app.use('/books', bookRouter);
 app.get('/', (request, response) => {
   // response.sendFile(path.join(__dirname, '/views/index.html'));
   response.render('index', {
-    nav: [
-      { link: '/books', title: 'Books' },
-      { link: '/authors', title: 'Authors' }],
+    nav,
     list: ['item-1', 'item-2'],
     title: 'My Library from variable',
   }
   );
 });
 
-app.get('/home', (request, response) => {
-  // response.sendFile(path.join(__dirname, '/views/index.html'));
-  response.render('home',
-    {
-      nav: [
-        { link: '/books', title: 'Books' },
-        { link: '/authors', title: 'Authors' }],
-      list: ['item-1', 'item-2'],
-      title: 'My Library from variable',
-    });
-});
 
 app.listen(port, () => {
   debug(`Listening at port  ${chalk.green(port)}`);
