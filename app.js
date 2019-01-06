@@ -11,7 +11,9 @@ const mysql = require('mysql');
 const port = process.env.PORT || 3000;
 
 const nav = [{ link: '/books', title: 'Books' }, { link: '/authors', title: 'Authors' }];
-const bookRouter = require('./src/routes/bookRoutes')(nav);
+const mysqlBookRoutes = require('./src/routes/mysqlBookRoutes')(nav);
+const bookRoutes = require('./src/routes/bookRoutes')(nav);
+const adminRoutes = require('./src/routes/adminRoutes')(nav);
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -42,8 +44,9 @@ app.set('views', './src/views');
 // app.set('view engine', 'pug');
 app.set('view engine', 'ejs');
 
-
-app.use('/books', bookRouter);
+app.use('/mysql/books', mysqlBookRoutes);
+app.use('/books', bookRoutes);
+app.use('/admin', adminRoutes);
 
 
 app.get('/', (request, response) => {

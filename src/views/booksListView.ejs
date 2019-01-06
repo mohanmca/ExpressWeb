@@ -17,18 +17,14 @@
     <!--[if lt IE 9]>
           <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <link href="/css/style.css" type="text/css" rel="stylesheet">
-        <link href="/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-
-
+    <link href="/css/style.css" type="text/css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 
     <!-- CSS code from Bootply.com editor -->
 
     <style type="text/css">
         /* override bootstrap styles */
         @import url('http://fonts.googleapis.com/css?family=Oswald:300,400:latin,latin-ext');
-
-    
     </style>
 </head>
 
@@ -111,15 +107,17 @@
                             </div>
                             <div class="col-md-10 col-sm-9">
                                 <h3>
-                                    <%=books[i].title%></h3>
+                                    <%=books[i].title%>
+                                </h3>
                                 <div class="row">
                                     <div class="col-xs-9">
-                                        <h4><span class="label label-default"><%=books[i].author%></span></h4>
+                                        <h4><span class="label label-default">
+                                                <%=books[i].author%></span></h4>
                                         <h4>
                                             <small style="font-family:courier,&#39;new courier&#39;;" class="text-muted">2
-                                                hours ago • 
-                                                
-                                                <a href="/books/<%=i%>" class="text-muted">Read More</a></small>
+                                                hours ago •
+
+                                                <a href="/books/<%=books[i]._id%>" class="text-muted">Read More</a></small>
                                         </h4>
                                     </div>
                                     <div class="col-xs-3"></div>
@@ -128,73 +126,65 @@
                             </div>
                         </div>
                         <%}%>
-                                    <a href="https://www.bootply.com/" class="btn btn-primary pull-right btnNext">More
-                                        <i class="glyphicon glyphicon-chevron-right"></i></a>
-
-
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                    <!--/col-12-->
-                </div>
-            </div>
-
-
-            <hr>
-
-            <div class="container" id="footer">
-                <div class="row">
-                    <div class="col col-sm-12">
-
-                        <h1>Follow Us</h1>
-                        <div class="btn-group">
-                            <a class="btn btn-twitter btn-lg" href="https://www.bootply.com/render/pVkM36Biz1#"><i
-                                    class="icon-twitter icon-large"></i>
-                                Twitter</a>
-                            <a class="btn btn-facebook btn-lg" href="https://www.bootply.com/render/pVkM36Biz1#"><i
-                                    class="icon-facebook icon-large"></i>
-                                Facebook</a>
-                            <a class="btn btn-google-plus btn-lg" href="https://www.bootply.com/render/pVkM36Biz1#"><i
-                                    class="icon-google-plus icon-large"></i>
-                                Google+</a>
-                        </div>
-
+                        <a href="https://www.bootply.com/" class="btn btn-primary pull-right btnNext">More
+                            <i class="glyphicon glyphicon-chevron-right"></i></a>
                     </div>
                 </div>
             </div>
+            <!--/col-12-->
+        </div>
+    </div>
 
-            <hr>
 
-            <hr>
+    <hr>
 
-            <footer>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <ul class="list-inline">
-                                <li><i class="icon-facebook icon-2x"></i></li>
-                                <li><i class="icon-twitter icon-2x"></i></li>
-                                <li><i class="icon-google-plus icon-2x"></i></li>
-                                <li><i class="icon-pinterest icon-2x"></i></li>
-                            </ul>
+    <div class="container" id="footer">
+        <div class="row">
+            <div class="col col-sm-12">
 
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="pull-right">Built with <i class="icon-heart-empty"></i> at <a href="http://www.bootply.com/">Bootply</a></p>
-                        </div>
-                    </div>
+                <h1>Follow Us</h1>
+                <div class="btn-group">
+                    <a class="btn btn-twitter btn-lg" href="https://www.bootply.com/render/pVkM36Biz1#"><i class="icon-twitter icon-large"></i>
+                        Twitter</a>
+                    <a class="btn btn-facebook btn-lg" href="https://www.bootply.com/render/pVkM36Biz1#"><i class="icon-facebook icon-large"></i>
+                        Facebook</a>
+                    <a class="btn btn-google-plus btn-lg" href="https://www.bootply.com/render/pVkM36Biz1#"><i class="icon-google-plus icon-large"></i>
+                        Google+</a>
                 </div>
-            </footer>
 
-            <!-- JavaScript jQuery code from Bootply.com editor  -->
+            </div>
+        </div>
+    </div>
 
-            <script type="text/javascript">
-                $(document).ready(function () {
-                });
-            </script>
+    <hr>
+
+    <hr>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul class="list-inline">
+                        <li><i class="icon-facebook icon-2x"></i></li>
+                        <li><i class="icon-twitter icon-2x"></i></li>
+                        <li><i class="icon-google-plus icon-2x"></i></li>
+                        <li><i class="icon-pinterest icon-2x"></i></li>
+                    </ul>
+
+                </div>
+                <div class="col-sm-6">
+                    <p class="pull-right">Built with <i class="icon-heart-empty"></i> at <a href="http://www.bootply.com/">Bootply</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript jQuery code from Bootply.com editor  -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+        });
+    </script>
 
 
 

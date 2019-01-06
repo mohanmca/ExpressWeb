@@ -10,7 +10,7 @@ create table books(
     year int,
 	PRIMARY KEY (ID);
 );
-
+insert into books (author,country,imageLink,language,link,pages,title,year)  values ("James Clear","United States","images/things-fall-apart.jpg","English","https://en.wikipedia.org/wiki/Automic_Habits",180,"Atomic Habits",2018);
 insert into books (author,country,imageLink,language,link,pages,title,year)  values ("Chinua Achebe","Nigeria","images/things-fall-apart.jpg","English","https://en.wikipedia.org/wiki/Things_Fall_Apart",209,"Things Fall Apart",1958);
 insert into books (author,country,imageLink,language,link,pages,title,year)  values ("Hans Christian Andersen","Denmark","images/fairy-tales.jpg","Danish","https://en.wikipedia.org/wiki/Fairy_Tales_Told_for_Children._First_Collection.",784,"Fairy tales",1836);
 insert into books (author,country,imageLink,language,link,pages,title,year)  values ("Dante Alighieri","Italy","images/the-divine-comedy.jpg","Italian","https://en.wikipedia.org/wiki/Divine_Comedy",928,"The Divine Comedy",1315);
