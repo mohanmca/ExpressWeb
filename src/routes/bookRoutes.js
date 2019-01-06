@@ -12,6 +12,13 @@ const sampleBooks = JSON.parse(fs.readFileSync(path.join(__dirname, '../views/bo
 
 function router(nav) {
   const bookRouter = express.Router();
+  bookRouter.use((req, res, next) => {
+    if (req.user) {
+      next();
+    } else {
+      res.redirect('/');
+    }
+  });
   bookRouter.route('/')
     .get((req, res) => {
       debug('Mongodb Connection would be established!');
@@ -52,7 +59,7 @@ function router(nav) {
           const books = await db.collection('books');
           console.log('Mongodb Connected!');
           req.book = await books.findOne({ _id: new ObjectId(id) });
-          console.log('Bookd retrieved!' + JSON.stringify(req.book) );
+          console.log('Bookd retrieved!' + JSON.stringify(req.book));
         } catch (err) {
           debug(err.stack);
         }
