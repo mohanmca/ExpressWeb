@@ -99,8 +99,8 @@
                         <div class="row">
                             <br>
                             <div class="col-md-2 col-sm-3 text-center">
-                                <a class="story-title" href="https://www.bootply.com/render/pVkM36Biz1#"><img alt=""
-                                        src="/img/img_ico.jpg" style="width:100px;height:100px" class="img-circle"></a>
+                                <a class="story-title" href="https://www.bootply.com/render/pVkM36Biz1#">
+                                    <img alt="" src="<%= book.details.image_url %>" style="width:100px;height:100px" class="img-circle"></a>
                             </div>
                             <div class="col-md-10 col-sm-9">
                                 <h3>
@@ -113,7 +113,9 @@
                                     </div>
                                     <div class="col-xs-3"></div>
                                 </div>
-                                <br><br>
+                                <br/>
+                                <%- book.details.description %>
+                                <br/>
                             </div>
                         </div>
                         <a href="https://www.bootply.com/" class="btn btn-primary pull-right btnNext">More
