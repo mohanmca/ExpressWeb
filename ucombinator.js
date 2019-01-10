@@ -14,12 +14,10 @@ const adder = (a,b) => a + b
 console.log(adderV1(2)(3));
 console.log(adder(2,3));
 
-// const reduceV2 = { func => {
-//     (arr, adder, sum) =>
-//         !arr.length
-//             ? sum
-//             : func(func)(a.slice(1), adder, adder(sum, arr[0]))
-// }}
+const reduceV2 =  func => (arr, adder, sum) =>
+        !arr.length
+            ? sum
+            : func(func)(arr.slice(1), adder, adder(sum, arr[0]))
 
 reduce = U(
     g =>
@@ -29,8 +27,12 @@ reduce = U(
           : g(g)( a.slice(1), cb, cb(i, a[0]) )
   )
 
+reduce2 = U(reduceV2);  
+
 const total = reduce([1,2,3], (acc, curr) => acc + curr, 0)
+const total2 = reduce2([1,2,3,4], (acc, curr) => acc + curr, 0)
 console.log(total);
+console.log(total2);
 
 
 
