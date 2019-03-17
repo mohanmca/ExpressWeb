@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "set DEBUG=app,app:* & nodemon app.js",
     "lint": "node_modules\\.bin\\eslint app.js",
-    "lint-fix": "node_modules\\.bin\\eslint app.js --fix"
+    "lint-fix": "node_modules\\.bin\\eslint app.js --fix",
+    "mdstart": "nodemon src\\services\\mdQuestionService.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +25,8 @@
     "express-session": "1.15.6",
     "font-awesome": "4.7.0",
     "jquery": "3.3.1",
+    "lodash": "4.17.11",
+    "markdown-it": "8.4.2",
     "mongodb": "3.1.10",
     "morgan": "1.9.1",
     "mysql": "2.16.0",

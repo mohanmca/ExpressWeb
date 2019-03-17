@@ -19,25 +19,26 @@ const mysqlBookRoutes = require('./src/routes/mysqlBookRoutes')(nav);
 const bookRoutes = require('./src/routes/bookRoutes')(nav);
 const adminRoutes = require('./src/routes/adminRoutes')(nav);
 const authRoutes = require('./src/routes/authRoutes')(nav);
+const searchRoutes = require('./src/routes/searchRoutes')(nav);
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  port: 3306,
-  password: 'euler',
-  user: 'euler',
-  database: 'thales',
-  schema: 'thales' // created by default
-});
+// const connection = mysql.createConnection({
+//   host: 'localhost',
+//   port: 3306,
+//   password: 'euler',
+//   user: 'euler',
+//   database: 'thales',
+//   schema: 'thales' // created by default
+// });
 
-connection.connect();
+// connection.connect();
 
-connection.query('select * from books', function (error, results, fields) {
-  // console.log('Fields are is: ', fields);
-  // console.log('The solution is: ', results);
-  if (error) throw error;
-});
+// connection.query('select * from books', function (error, results, fields) {
+//   // console.log('Fields are is: ', fields);
+//   // console.log('The solution is: ', results);
+//   if (error) throw error;
+// });
 
-connection.end();
+// connection.end();
 
 app.use(morgan('combined'));
 app.use(bodyParser.json());
@@ -60,6 +61,7 @@ app.use('/mysql/books', mysqlBookRoutes);
 app.use('/books', bookRoutes);
 app.use('/admin', adminRoutes);
 app.use('/auth', authRoutes);
+app.use('/search', searchRoutes);
 
 
 app.get('/', (request, response) => {
