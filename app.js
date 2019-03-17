@@ -14,12 +14,13 @@ const session = require('express-session');
 
 const port = process.env.PORT || 3000;
 
-const nav = [{ link: '/books', title: 'Books' }, { link: '/authors', title: 'Authors' }, { link: '/auth/logout', title: 'Logout' }];
+const nav = [{ link: '/books', title: 'Books' }, { link: '/authors', title: 'Authors' }, { link: '/auth/logout', title: 'Logout' }, { link: '/flash', title: 'Flash Card' }];
 const mysqlBookRoutes = require('./src/routes/mysqlBookRoutes')(nav);
 const bookRoutes = require('./src/routes/bookRoutes')(nav);
 const adminRoutes = require('./src/routes/adminRoutes')(nav);
 const authRoutes = require('./src/routes/authRoutes')(nav);
 const searchRoutes = require('./src/routes/searchRoutes')(nav);
+const flashCardRoutes = require('./src/routes/flashCardRoutes')(nav);
 
 // const connection = mysql.createConnection({
 //   host: 'localhost',
@@ -62,6 +63,7 @@ app.use('/books', bookRoutes);
 app.use('/admin', adminRoutes);
 app.use('/auth', authRoutes);
 app.use('/search', searchRoutes);
+app.use('/flash', flashCardRoutes);
 
 
 app.get('/', (request, response) => {

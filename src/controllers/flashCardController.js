@@ -1,74 +1,62 @@
-const debug = require('debug')('app:flashCardControllers');
+const debug = require("debug")("app:flashCardControllers");
 //const { MongoClient, ObjectId } = require('mongodb');
 
+function flashCardControllers(flashCardService, nav) {
+  function getFlashCard(priorQuestions) {
+    console.log(
+      " priorQuestions " +
+        priorQuestions +
+        " length " +
+        flashCardService.getQuestionLength()
+    );
+    let qIndex = Math.floor(
+      Math.random() * flashCardService.getQuestionLength()
+    );
+    console.log(" qIndex " + qIndex);
+    const question = flashCardService.getQuestionAt(qIndex);
+    const answer = flashCardService.getAnswerAt(qIndex);
+    let attemptedQuestions = [];
+    if (Array.isArray(priorQuestions)) {
+      attemptedQuestions = priorQuestions;
+    } else {
+      attemptedQuestions.push(priorQuestions);
+    }
+    attemptedQuestions.push(qIndex);
 
-function bookControllers(bookService, nav) {
-  function getIndex(req, res) {
-    debug('Mongodb Connection would be established!');
-    const url = 'mongodb://localhost:27017';
-    const dbName = 'libraryApp';
-    (async function mongo() {
-      let client;
-      try {
-        client = await MongoClient.connect(url);
-        const db = client.db(dbName);
-        debug('Mongodb Connected!');
-        const col = await db.collection('books');
-        const books = await col.find().toArray();
-
-        res.render('booksListView', {
-          nav,
-          books,
-          title: 'My Library from variable'
-        });
-
-      } catch (err) {
-        debug(err.stack);
-      }
-      client.close();
-    }());
+    const flashCard = { question, answer, attemptedQuestions };
+    return flashCard;
   }
 
+  function getQuestion(req, res) {
+    let flashCard = getFlashCard();
+    debug("flashCard!" + JSON.stringify(flashCard, null, 2));
+    res.render("showCard", {
+      nav,
+      flashCard,
+      title: "Select Answer"
+    });
+  }
 
-  function getById(req, res, next) {
-    const { id } = req.params;
-    const url = 'mongodb://localhost:27017';
-    const dbName = 'libraryApp';
-    (async function mongo() {
-      let client;
-      try {
-        client = await MongoClient.connect(url);
-        const db = client.db(dbName);
-        const books = await db.collection('books');
-        console.log('Mongodb Connected!');
-        const book = await books.findOne({ _id: new ObjectId(id) });
-        console.log('Bookd retrieved!' + JSON.stringify(req.book));
-
-        book.details = await bookService.getBookById(book.bookId);
-        debug('Mongodb Connected!' +   JSON.stringify(book.details));
-
-        res.render('bookView', {
-          nav,
-          book,
-          title: 'My Library from variable'
-        });
-
-      } catch (err) {
-        debug(err.stack);
-      }
-      client.close();
-      next();
-    }());
+  function submitFeedback(req, res) {
+    const { attemptedQuestions } = req.query;
+    console.log("Prior attemptedQuestions question! " + attemptedQuestions);
+    const flashCard = getFlashCard(attemptedQuestions);
+    debug("flashCard!" + JSON.stringify(flashCard, null, 2));
+    res.render("showCard", {
+      nav,
+      flashCard,
+      title: "Select Answer"
+    });
   }
 
   function middleware(req, res, next) {
     if (req.user) {
       next();
     } else {
-      res.redirect('/');
+      res.redirect("/");
     }
   }
 
-  return { getIndex, getById, middleware }
+  return { middleware, getQuestion, submitFeedback };
 }
-module.exports = bookControllers;
+module.exports = flashCardControllers;

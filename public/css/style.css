@@ -194,3 +194,8 @@ a:hover {
     background-color: #C23836;
     color: #E45A58;
 }
+
+.hidden {
+    display: none;
+    background-color: yellow;
+}

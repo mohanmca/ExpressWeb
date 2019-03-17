@@ -70,13 +70,6 @@ function getAnswerContentAt(i, ast) {
   return parseContentRange(questionStart, answerRange, ast);
 }
 
-
-
-
-// log("Array position for question " + parseQuestionIndex(mdcontent));
-// log("question of 1 " + parseQuestionAt(parseQuestionIndex(mdcontent)));
-// log("Answer of " + parseAnswerAt(parseQuestionIndex(mdcontent)))
-
 module.exports = {
   parseQuestionIndex,
   parseQuestionAt,

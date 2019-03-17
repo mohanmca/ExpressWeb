@@ -1,21 +1,21 @@
 /* eslint-disable prefer-destructuring */
 
-const express = require('express');
-const bookService = require('../services/goodreadsService')
-const bookController = require('../controllers/bookController.js')
+const express = require("express");
+const flashCardService = require("../services/flashCardService");
+const flashCardController = require("../controllers/flashCardController.js");
 
 function router(nav) {
-  const bookRouter = express.Router();
-  const { getIndex, getById, middleware } = bookController(bookService, nav);
+  const flashCardRouter = express.Router();
+  const { submitFeedback, middleware } = flashCardController(
+    flashCardService,
+    nav
+  );
 
-  bookRouter.use(middleware);
-  bookRouter.route('/')
-    .get(getIndex);
+  flashCardRouter.use(middleware);
+  flashCardRouter.route("/").get(submitFeedback);
+  flashCardRouter.route("/submitFeedback").all(submitFeedback);
 
-  bookRouter.route('/:id')
-    .get(getById);
-
-  return bookRouter;
+  return flashCardRouter;
 }
 
 module.exports = router;
